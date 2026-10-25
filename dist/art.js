@@ -5,11 +5,13 @@ function flower(x,y,c='#edb1bb',s=1){return `<g transform="translate(${x} ${y}) 
 const sceneDescriptions = {
  map:'주변을 살피는 치이카와와 지도',work:'게시판 앞에서 고개를 기울이는 치이카와',
  greeting:'손을 흔드는 치이카와와 하치와레',snack:'사탕을 먹는 치이카와와 푸딩',
- comfort:'간식을 든 치이카와와 곁에 있는 하치와레',cart:'도구를 든 치이카와와 길에 걸린 수레',
+ comfort:'간식을 든 치이카와와 곁에 있는 하치와레',cart:'치이카와, 하치와레, 우사기가 함께 상자를 나르는 공식 애니 장면',
  dinner:'간식을 즐기는 치이카와와 친구들의 저녁',night:'이불을 덮고 잠든 치이카와'
 };
 function poseSVG(scene,x=225,y=125,w=205,h=195){return `<image href="assets/poses/${scene}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;}
 function landscape(scene='home'){
+ if(scene==='cart') return `<img class="official-scene" src="assets/poses/cart.webp" alt="${sceneDescriptions.cart}" width="1200" height="675" decoding="async">`;
+
  const night=scene==='night';
  const objects=scene==='map'?'<g transform="translate(397 200) rotate(8)" stroke="#a99a77" stroke-width="2"><path d="M0 0l35-10 35 10 34-8v72l-34 8-35-10-35 10Z" fill="#fff6d8"/><path d="M35-10v72m35-62v72"/><path d="M12 40q45-40 76-10" fill="none" stroke-dasharray="4 5"/></g>':scene==='work'?'<g stroke="#a48c70" stroke-width="3"><path d="M397 188v108m100-108v108"/><rect x="378" y="145" width="140" height="91" rx="7" fill="#dbc7a8"/><path d="M395 161h42v51h-42Zm60 0h44v51h-44Z" fill="#fff9e9"/><path d="M404 177h24m-24 12h17m38-12h24m-24 12h16"/></g>':scene==='cart'?'<g stroke="#8d8069" stroke-width="3"><path d="M379 221h125l-14 47h-96Z" fill="#ecd4ab"/><circle cx="406" cy="279" r="11" fill="#fff6df"/><circle cx="482" cy="279" r="11" fill="#fff6df"/><path d="M504 221l14-22h16"/><path d="M409 224l3-21m18 21l9-31m16 31l3-23" stroke="#9ca981"/></g>':scene==='snack'?'<g stroke="#8f7965" stroke-width="3"><ellipse cx="442" cy="266" rx="66" ry="12" fill="#fffaf0"/><path d="M405 252l9-57h57l10 57q-38 19-76 0" fill="#f4d38c"/><path d="M414 195q29-13 57 0l2 14q-30 12-61 0Z" fill="#bf8e6e"/><circle cx="442" cy="185" r="10" fill="#e4a5a2"/></g>':'';
  const extraObjects=scene==='dinner'?'<g stroke="#a48c70" stroke-width="3"><ellipse cx="452" cy="260" rx="130" ry="25" fill="#e6cfac"/><path d="M358 268v53m185-53v53"/><ellipse cx="435" cy="250" rx="24" ry="8" fill="#fffaf0"/><path d="M417 248q0-26 18-26t18 26Z" fill="#f6d591"/></g>':'';
