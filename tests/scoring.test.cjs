@@ -15,7 +15,7 @@ for (const q of data.questions) {
   }
 }
 assert.equal(new Set(data.questions.map(q => q.scene)).size, 8, 'Each question needs a distinct scene');
-for (const q of data.questions) assert(fs.existsSync(path.join(__dirname, '../dist/assets/scenes', q.scene + '.webp')), 'Missing scene: ' + q.scene);
+for (const q of data.questions) assert(fs.existsSync(path.join(__dirname, '../dist/assets/poses', q.scene + '.webp')), 'Missing scene: ' + q.scene);
 const counts = Object.fromEntries(ids.map(id => [id, 0]));
 for (let n = 0; n < 3 ** 8; n++) {
   let value = n;

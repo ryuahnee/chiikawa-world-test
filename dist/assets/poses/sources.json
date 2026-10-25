@@ -1,0 +1,13 @@
+{
+  "description": "User-provided original character cutouts. Transparent padding trimmed; character pixels not redrawn.",
+  "files": {
+    "map": "dance11.png",
+    "work": "dance23.png",
+    "greeting": "dance1.png",
+    "snack": "eat1.png",
+    "comfort": "hold.png",
+    "cart": "base.png",
+    "dinner": "eat8.png",
+    "night": "sleepA1.png"
+  }
+}

@@ -3,20 +3,20 @@ const characterAssets={"c": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX8AA
 function characterSVG(id,x=0,y=0,scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})"><image href="${characterAssets[id]}" x="5" y="0" width="190" height="215" preserveAspectRatio="xMidYMid meet"/></g>`;}
 function flower(x,y,c='#edb1bb',s=1){return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0v23m0-9q-12-9-12-2m12 7q12-9 13-2" stroke="#90a77e" stroke-width="2" fill="none"/><g fill="${c}"><circle cx="-6" cy="-3" r="5"/><circle cx="0" cy="-8" r="5"/><circle cx="6" cy="-3" r="5"/><circle cx="4" cy="4" r="5"/><circle cx="-4" cy="4" r="5"/></g><circle r="3" fill="#f7dda2"/></g>`;}
 const sceneDescriptions = {
- map:'졸린 눈을 비비며 지도와 주변을 살피는 치이카와',
- work:'게시판 앞에서 턱에 손을 대고 고민하는 치이카와',
- greeting:'볼을 붉히며 하치와레에게 수줍게 손을 흔드는 치이카와',
- snack:'간식을 보며 눈을 반짝이고 기뻐하는 치이카와',
- comfort:'풀이 죽은 하치와레 곁에서 다정하게 토닥이는 치이카와',
- cart:'땀을 흘리며 온몸으로 수레를 힘껏 미는 치이카와',
- dinner:'메뉴판을 들고 하치와레와 우사기와 저녁을 의논하는 치이카와',
- night:'포근한 이불 속에서 눈을 감고 편안하게 웃는 치이카와'
+ map:'주변을 살피는 치이카와와 지도',work:'게시판 앞에서 고개를 기울이는 치이카와',
+ greeting:'손을 흔드는 치이카와와 하치와레',snack:'사탕을 먹는 치이카와와 푸딩',
+ comfort:'간식을 든 치이카와와 곁에 있는 하치와레',cart:'도구를 든 치이카와와 길에 걸린 수레',
+ dinner:'간식을 즐기는 치이카와와 친구들의 저녁',night:'이불을 덮고 잠든 치이카와'
 };
+function poseSVG(scene,x=225,y=125,w=205,h=195){return `<image href="assets/poses/${scene}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;}
 function landscape(scene='home'){
- if (sceneDescriptions[scene]) return `<img class="scene-illustration" src="assets/scenes/${scene}.webp" alt="${sceneDescriptions[scene]}" width="960" height="640" decoding="async" fetchpriority="high">`;
-
  const night=scene==='night';
  const objects=scene==='map'?'<g transform="translate(397 200) rotate(8)" stroke="#a99a77" stroke-width="2"><path d="M0 0l35-10 35 10 34-8v72l-34 8-35-10-35 10Z" fill="#fff6d8"/><path d="M35-10v72m35-62v72"/><path d="M12 40q45-40 76-10" fill="none" stroke-dasharray="4 5"/></g>':scene==='work'?'<g stroke="#a48c70" stroke-width="3"><path d="M397 188v108m100-108v108"/><rect x="378" y="145" width="140" height="91" rx="7" fill="#dbc7a8"/><path d="M395 161h42v51h-42Zm60 0h44v51h-44Z" fill="#fff9e9"/><path d="M404 177h24m-24 12h17m38-12h24m-24 12h16"/></g>':scene==='cart'?'<g stroke="#8d8069" stroke-width="3"><path d="M379 221h125l-14 47h-96Z" fill="#ecd4ab"/><circle cx="406" cy="279" r="11" fill="#fff6df"/><circle cx="482" cy="279" r="11" fill="#fff6df"/><path d="M504 221l14-22h16"/><path d="M409 224l3-21m18 21l9-31m16 31l3-23" stroke="#9ca981"/></g>':scene==='snack'?'<g stroke="#8f7965" stroke-width="3"><ellipse cx="442" cy="266" rx="66" ry="12" fill="#fffaf0"/><path d="M405 252l9-57h57l10 57q-38 19-76 0" fill="#f4d38c"/><path d="M414 195q29-13 57 0l2 14q-30 12-61 0Z" fill="#bf8e6e"/><circle cx="442" cy="185" r="10" fill="#e4a5a2"/></g>':'';
- const chars=scene==='home'?characterSVG('h',147,141,.8)+characterSVG('c',290,168,.84)+characterSVG('u',439,113,.83):scene==='friend'?characterSVG('c',192,131,.85)+characterSVG('h',357,123,.85):characterSVG('c',206,120,.9);
- return `<svg viewBox="0 0 760 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${scene==='home'?'풀밭에서 함께하는 치이카와, 하치와레, 우사기':'작은 하루의 한 장면'}"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="${night?'#e6e6f1':'#f8f6eb'}"/><stop offset="1" stop-color="#faf6ec"/></linearGradient></defs><rect width="760" height="390" fill="url(#sky)"/><g fill="#fffdf8" stroke="#e5dfd2" stroke-width="1.5"><path d="M65 99q-14-20 8-29 4-28 32-16 25-17 36 10 27 2 17 30Z"/><path d="M574 72q-12-17 9-22 10-22 30-9 22-7 29 15 23 0 18 17Z"/></g>${night?'<path d="M410 70a26 26 0 1 0 36 34 29 29 0 0 1-36-34" fill="#efd58d"/>':'<g stroke="#ddc282" stroke-width="2"><path d="M389 57v13m-6-7h12m-190 71v11m-5-5h10m359-9v12m-5-6h10"/></g>'}<path d="M-30 310Q130 253 320 291Q540 248 800 307V390H0Z" fill="#e8ecda"/><path d="M-20 352Q190 307 393 343Q600 302 800 342V390H0Z" fill="#dfe6ce"/><ellipse cx="383" cy="320" rx="220" ry="12" fill="#a5b392" opacity=".17"/>${objects}${chars}${flower(107,306,'#edb7bb',1.1)}${flower(636,292,'#f5eee0',1.3)}${flower(581,347,'#edb7bb',.8)}${flower(168,354,'#f5eee0',.75)}<g stroke="#a3b58c" stroke-width="2" fill="none" stroke-linecap="round"><path d="M59 343l-3-9m3 9l6-10m174 29l-2-10m2 10l6-8m427-22l-4-10m4 10l5-10"/></g></svg>`;
+ const extraObjects=scene==='dinner'?'<g stroke="#a48c70" stroke-width="3"><ellipse cx="452" cy="260" rx="130" ry="25" fill="#e6cfac"/><path d="M358 268v53m185-53v53"/><ellipse cx="435" cy="250" rx="24" ry="8" fill="#fffaf0"/><path d="M417 248q0-26 18-26t18 26Z" fill="#f6d591"/></g>':'';
+ const chars=scene==='home'?characterSVG('h',147,141,.8)+characterSVG('c',290,168,.84)+characterSVG('u',439,113,.83):
+ (scene==='greeting'||scene==='comfort')?poseSVG(scene,180,128,210,194)+characterSVG('h',395,133,.79):
+ scene==='dinner'?characterSVG('h',111,129,.72)+characterSVG('u',493,102,.77)+poseSVG(scene,278,104,174,194):
+ scene==='night'?poseSVG(scene,251,111,260,220):scene==='cart'?poseSVG(scene,186,140,235,170):poseSVG(scene);
+
+ return `<svg viewBox="0 0 760 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${scene==='home'?'풀밭에서 함께하는 치이카와, 하치와레, 우사기':sceneDescriptions[scene]}"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="${night?'#e6e6f1':'#f8f6eb'}"/><stop offset="1" stop-color="#faf6ec"/></linearGradient></defs><rect width="760" height="390" fill="url(#sky)"/><g fill="#fffdf8" stroke="#e5dfd2" stroke-width="1.5"><path d="M65 99q-14-20 8-29 4-28 32-16 25-17 36 10 27 2 17 30Z"/><path d="M574 72q-12-17 9-22 10-22 30-9 22-7 29 15 23 0 18 17Z"/></g>${night?'<path d="M410 70a26 26 0 1 0 36 34 29 29 0 0 1-36-34" fill="#efd58d"/>':'<g stroke="#ddc282" stroke-width="2"><path d="M389 57v13m-6-7h12m-190 71v11m-5-5h10m359-9v12m-5-6h10"/></g>'}<path d="M-30 310Q130 253 320 291Q540 248 800 307V390H0Z" fill="#e8ecda"/><path d="M-20 352Q190 307 393 343Q600 302 800 342V390H0Z" fill="#dfe6ce"/><ellipse cx="383" cy="320" rx="220" ry="12" fill="#a5b392" opacity=".17"/>${extraObjects}${objects}${chars}${flower(107,306,'#edb7bb',1.1)}${flower(636,292,'#f5eee0',1.3)}${flower(581,347,'#edb7bb',.8)}${flower(168,354,'#f5eee0',.75)}<g stroke="#a3b58c" stroke-width="2" fill="none" stroke-linecap="round"><path d="M59 343l-3-9m3 9l6-10m174 29l-2-10m2 10l6-8m427-22l-4-10m4 10l5-10"/></g></svg>`;
 }
