@@ -6,3 +6,5 @@
 
 .question-art .official-scene{display:block;width:100%;height:auto;border-radius:25px}
 .question-art:has(.official-scene){margin-top:10px;margin-bottom:10px}
+
+.question-art:has(.cart-scene){margin-bottom:8px}

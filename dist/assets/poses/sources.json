@@ -7,9 +7,9 @@
     "snack": "eat1.png",
     "comfort": "hold.png",
     "cart": {
-      "source": "https://x.com/anime_chiikawa/status/1909018284403421694",
-      "image": "https://pbs.twimg.com/media/GnqNT34aMAE0oHp.jpg",
-      "description": "Official anime still, full frame with original copyright credit retained."
+      "chiikawa_source": "https://mezamashi.media/articles/-/1226",
+      "gray_friend_source": "https://note.com/chiikawa_kaiseki/n/n01e74f9c9255",
+      "description": "Original character pixels preserved; backgrounds removed for composition with an illustrated cart."
     },
     "dinner": "eat8.png",
     "night": "sleepA1.png"
