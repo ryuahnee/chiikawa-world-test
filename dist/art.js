@@ -12,6 +12,7 @@ const sceneDescriptions = {
 function poseSVG(scene,x=225,y=125,w=205,h=195){return `<image href="assets/poses/${scene}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;}
 function landscape(scene='home'){
  if(scene==='cart') return cartScene();
+ if(scene==='practice') return `<img class="original-scene" src="assets/poses/practice-forest.webp" alt="숲에서 지친 모습의 치이카와와 하치와레, 나무 뒤에서 바라보는 우사기" width="1200" height="665" decoding="async">`;
  if(scene==='practice'||scene==='teamwork') return `<svg viewBox="0 0 640 320" role="img" aria-label="${scene==='practice'?'새로운 일을 배우는 시사와 치이카와':'함께 일을 마무리하는 랏코와 하치와레'}"><ellipse cx="320" cy="273" rx="245" ry="30" fill="#e4ead8"/>${flower(112,247)}${flower(514,260,'#edce8f')}${characterSVG(scene==='practice'?'s':'r',154,55,.94)}${characterSVG(scene==='practice'?'c':'h',337,65,.9)}</svg>`;
 
  if(scene==='dinner') return `<img class="original-scene" src="assets/poses/dinner-stalls.webp" alt="${sceneDescriptions.dinner}" width="1200" height="649" decoding="async">`;
