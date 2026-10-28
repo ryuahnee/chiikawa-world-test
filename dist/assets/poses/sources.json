@@ -10,7 +10,11 @@
       "source": "https://blog.iias.asia/pop-pacific/digital-ibuprofen-why-anxious-young-chinese-cant-get-enough-chiikawa",
       "description": "Original anime scene at the job noticeboard; approved candidate."
     },
-    "greeting": "dance1.png",
+    "greeting": {
+      "source": "https://mezamashi.media/articles/-/1433",
+      "image": "https://mezamashi.ismcdn.jp/mwimgs/d/e/1200xm/img_de5df59a3624e7a1df64f86ffb25930d120010.jpg",
+      "description": "User-approved official anime episode 220 still, used for a reserved interaction mood; not an actual first-meeting scene."
+    },
     "snack": "eat1.png",
     "comfort": "hold.png",
     "cart": {
