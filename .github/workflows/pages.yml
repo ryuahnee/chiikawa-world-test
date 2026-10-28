@@ -24,11 +24,16 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
       - name: Prepare versioned release
+        env:
+          POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
+          POSTHOG_API_HOST: ${{ vars.POSTHOG_API_HOST }}
         run: node scripts/prepare-release.cjs
       - name: Verify cache refresh
         run: node tests/cache.test.cjs
       - name: Verify scoring
         run: node tests/scoring.test.cjs
+      - name: Verify analytics privacy
+        run: node tests/analytics.test.cjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website
