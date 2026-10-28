@@ -2,7 +2,10 @@
   "description": "User-provided original character cutouts. Transparent padding trimmed; character pixels not redrawn.",
   "files": {
     "map": "dance11.png",
-    "work": "dance23.png",
+    "work": {
+      "source": "https://blog.iias.asia/pop-pacific/digital-ibuprofen-why-anxious-young-chinese-cant-get-enough-chiikawa",
+      "description": "Original anime scene at the job noticeboard; approved candidate."
+    },
     "greeting": "dance1.png",
     "snack": "eat1.png",
     "comfort": "hold.png",
@@ -11,7 +14,11 @@
       "gray_friend_source": "https://note.com/chiikawa_kaiseki/n/n01e74f9c9255",
       "description": "Original character pixels preserved; backgrounds removed for composition with an illustrated cart."
     },
-    "dinner": "eat8.png",
+    "dinner": {
+      "source": "https://chiikawa.hatenablog.jp/entry/2022/01/27/152212",
+      "image": "https://pbs.twimg.com/media/Em8QO_kUYAEec4N.jpg",
+      "description": "Menu-board panel cropped from the original comic; character pixels not redrawn."
+    },
     "night": "sleepA1.png"
   }
 }

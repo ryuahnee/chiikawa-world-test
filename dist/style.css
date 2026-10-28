@@ -8,3 +8,5 @@
 .question-art:has(.official-scene){margin-top:10px;margin-bottom:10px}
 
 .question-art:has(.cart-scene){margin-bottom:8px}
+
+.question-art .original-scene{display:block;width:100%;height:auto;border-radius:20px}.question-art:has(.original-scene){margin-top:10px;margin-bottom:12px}
