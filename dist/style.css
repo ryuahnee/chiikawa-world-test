@@ -10,3 +10,5 @@
 .question-art:has(.cart-scene){margin-bottom:8px}
 
 .question-art .original-scene{display:block;width:100%;height:auto;border-radius:20px}.question-art:has(.original-scene){margin-top:10px;margin-bottom:12px}
+
+.question-art .cozy-scene{max-height:260px;object-fit:contain}@media(max-width:650px){.question-art .cozy-scene{max-height:230px}}

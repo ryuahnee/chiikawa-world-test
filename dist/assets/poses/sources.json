@@ -28,6 +28,10 @@
       "image": "https://pbs.twimg.com/media/Em8QO_kUYAEec4N.jpg",
       "description": "Menu-board panel cropped from the original comic; character pixels not redrawn."
     },
-    "night": "sleepA1.png"
+    "night": {
+      "source": "https://ru.pinterest.com/pin/609745237090081888/",
+      "image": "https://i.pinimg.com/736x/88/c6/a9/88c6a92f90f276fba1a91fa17b2f05cc.jpg",
+      "description": "User-approved cozy blanket scene with a smiling, eyes-closed Chiikawa holding a teddy bear. Image preserved without redrawing."
+    }
   }
 }
