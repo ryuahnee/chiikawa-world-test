@@ -5,7 +5,7 @@ const path = require('node:path');
 const data = vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../dist/data.js'), 'utf8') + ';({characters, questions, calculateResult})');
 const ids = Object.keys(data.characters);
 assert.equal(data.questions.length, 8);
-assert.equal(ids.length, 6);
+assert.equal(ids.length, 7);
 for (const q of data.questions) {
   assert.equal(q.answers.length, 3);
   assert.equal(q.weights.length, 3);
@@ -34,6 +34,9 @@ for (let n = 0; n < 3 ** 8; n++) {
   counts[result]++;
 }
 assert(Object.values(counts).every(n => n > 0));
-assert.deepEqual(counts, {c:1627,h:1272,u:748,m:1069,r:1140,k:705});
+assert.deepEqual(counts, {c:1318,h:1362,u:770,m:1196,r:689,s:275,k:951});
+assert.equal(data.calculateResult([0,2,2,1,0,0,2,0]), 's', 'Persistent learning answers should reach Shisa');
+for (const id of ids) assert(fs.existsSync(path.join(__dirname, '../dist/assets', id + '.png')), 'Missing character: ' + id);
+
 for (const invalid of [[], Array(8).fill(3), Array(8).fill(-1), Array(8).fill(0.5)]) assert.throws(() => data.calculateResult(invalid));
 console.log('PASS: 6,561 combinations, deterministic results, scoring and expected distribution', counts);
