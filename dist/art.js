@@ -11,6 +11,8 @@ const sceneDescriptions = {
 function poseSVG(scene,x=225,y=125,w=205,h=195){return `<image href="assets/poses/${scene}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;}
 function landscape(scene='home'){
  if(scene==='cart') return cartScene();
+ if(scene==='work') return `<img class="original-scene" src="assets/poses/work-korean.webp" alt="${sceneDescriptions.work}" width="1200" height="627" decoding="async">`;
+
  if(scene==='comfort') return `<img class="original-scene" src="assets/poses/comfort-exam.webp" alt="${sceneDescriptions.comfort}" width="1200" height="674" decoding="async">`;
 
  if(scene==='greeting') return `<img class="original-scene" src="assets/poses/greeting-anime.webp" alt="${sceneDescriptions.greeting}" width="1200" height="675" decoding="async">`;
