@@ -27,3 +27,5 @@
 ## 이미지 출처
 
 공식 캐릭터 소개 페이지에서 가져온 이미지이며 원본 URL은 `dist/assets/sources.json`에 있습니다. 캐릭터와 이미지의 권리는 각 권리자에게 있습니다. 이 프로젝트는 공식 서비스가 아닙니다.
+
+배포 전에 `node scripts/prepare-release.cjs`로 파일 버전과 `dist/version.json`을 갱신합니다. GitHub Actions에서도 자동 실행합니다. 접속 및 모바일 탭 복귀 시 최신 버전을 확인하고, 테스트 도중에는 결과 화면까지 갱신을 미룹니다. 캐시 갱신 검사는 `node tests/cache.test.cjs`로 실행합니다.
