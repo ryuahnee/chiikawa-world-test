@@ -16,7 +16,9 @@
       "description": "User-approved official anime episode 220 still, used for a reserved interaction mood; not an actual first-meeting scene."
     },
     "snack": "eat1.png",
-    "comfort": "hold.png",
+    "comfort": {
+      "description": "User-provided anime screenshot of Chiikawa and Hachiware holding exam results. Full scene preserved; optimized for web display."
+    },
     "cart": {
       "chiikawa_source": "https://mezamashi.media/articles/-/1226",
       "gray_friend_source": "https://note.com/chiikawa_kaiseki/n/n01e74f9c9255",
