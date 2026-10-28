@@ -3,7 +3,7 @@ const characterAssets={"c": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX8AA
 function characterSVG(id,x=0,y=0,scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})"><image href="${characterAssets[id]}" x="5" y="0" width="190" height="215" preserveAspectRatio="xMidYMid meet"/></g>`;}
 function flower(x,y,c='#edb1bb',s=1){return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0v23m0-9q-12-9-12-2m12 7q12-9 13-2" stroke="#90a77e" stroke-width="2" fill="none"/><g fill="${c}"><circle cx="-6" cy="-3" r="5"/><circle cx="0" cy="-8" r="5"/><circle cx="6" cy="-3" r="5"/><circle cx="4" cy="4" r="5"/><circle cx="-4" cy="4" r="5"/></g><circle r="3" fill="#f7dda2"/></g>`;}
 const sceneDescriptions = {
- map:'두 손으로 펼친 지도 너머의 작은 흰 돔집 마을과 동그란 컷 속 당황한 치이카와',work:'일감 게시판 앞에서 오늘 할 일을 고르는 치이카와',
+ map:'접힌 지도를 든 시점에서 보이는 세 갈래 길과 작은 마을, 지나가는 회색 모브와 당황한 치이카와',work:'일감 게시판 앞에서 오늘 할 일을 고르는 치이카와',
  greeting:'토벌 도구를 든 하치와레를 조금 떨어져 조심스럽게 바라보는 치이카와',snack:'사탕을 먹는 치이카와와 푸딩',
  comfort:'간식을 든 치이카와와 곁에 있는 하치와레',cart:'당황한 치이카와와 걸린 수레 옆의 회색 친구',
  dinner:'가게 앞 메뉴판을 함께 살펴보는 치이카와와 하치와레',night:'이불을 덮고 잠든 치이카와'
@@ -13,7 +13,7 @@ function landscape(scene='home'){
  if(scene==='cart') return cartScene();
  if(scene==='greeting') return `<img class="original-scene" src="assets/poses/greeting-anime.webp" alt="${sceneDescriptions.greeting}" width="1200" height="675" decoding="async">`;
 
- if(scene==='map') return `<img class="original-scene" src="assets/poses/map-firstperson.webp" alt="${sceneDescriptions.map}" width="1200" height="800" decoding="async" fetchpriority="high">`;
+ if(scene==='map') return `<img class="original-scene" src="assets/poses/map-crossroads.webp" alt="${sceneDescriptions.map}" width="1200" height="800" decoding="async" fetchpriority="high">`;
 
  if(scene==='work'||scene==='dinner') return `<img class="original-scene" src="assets/poses/${scene}.webp" alt="${sceneDescriptions[scene]}" width="${scene==='work'?800:365}" height="${scene==='work'?415:231}" decoding="async">`;
 

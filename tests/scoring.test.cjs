@@ -16,7 +16,7 @@ for (const q of data.questions) {
 }
 assert.equal(new Set(data.questions.map(q => q.scene)).size, 8, 'Each question needs a distinct scene');
 for (const q of data.questions) {
-  const assets = q.scene === 'cart' ? ['worried-b', 'gray-friend'] : q.scene === 'map' ? ['map-firstperson'] : q.scene === 'greeting' ? ['greeting-anime'] : [q.scene];
+  const assets = q.scene === 'cart' ? ['worried-b', 'gray-friend'] : q.scene === 'map' ? ['map-crossroads'] : q.scene === 'greeting' ? ['greeting-anime'] : [q.scene];
   for (const asset of assets) assert(fs.existsSync(path.join(__dirname, '../dist/assets/poses', asset + '.webp')), 'Missing scene asset: ' + asset);
 }
 const counts = Object.fromEntries(ids.map(id => [id, 0]));

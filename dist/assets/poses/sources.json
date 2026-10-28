@@ -2,7 +2,7 @@
   "description": "User-provided original character cutouts. Transparent padding trimmed; character pixels not redrawn.",
   "files": {
     "map": {
-      "description": "User-approved first-person map and distant dome-house village illustration with a circular worried Chiikawa reaction inset. Generated composite preview approved on 2026-10-28.",
+      "description": "User-approved illustration: folded map, three-way path, distant white dome-house village, plain gray mob passerby, circular worried Chiikawa inset.",
       "architecture_reference": "https://twitter.com/ngnchiikawa/status/1621450183103115264",
       "expression_reference": "https://mezamashi.media/articles/-/1226"
     },
