@@ -17,10 +17,13 @@ const questions=[
 {chapter:'함께 먹는 저녁',title:'친구들과 저녁을 먹기로 했는데,\n가고 싶은 가게가 달라요.',desc:'내가 정말 가고 싶었던 가게도 후보에 있어요.',scene:'dinner',answers:['내가 가고 싶은 곳과 이유를 솔직하게 말한다.','친구들 의견을 듣고 다 같이 즐길 만한 곳을 찾는다.','거리와 대기 시간을 비교해 괜찮은 곳을 제안한다.'],weights:[['m','u'],['h','c'],['r','k']]},
 {chapter:'포근한 하루의 끝',title:'어느새 하루가 끝났어요.\n가장 기분 좋았던 순간은?',desc:'잠들기 전, 오늘 있었던 일을 떠올려 봐요.',scene:'night',answers:['꾸준히 노력한 일에서 조금씩 성과가 보였을 때.','친구가 내 장점을 알아봐 주고 칭찬했던 순간.','좋아하는 간식을 곁에 두고 조용히 쉴 때.'],weights:[['s','c'],['m','h'],['k','c']]}
 ];
+// Balance scoring opportunities across all 6,561 equally weighted answer combinations.
+const scoreScale={"c":1.0,"h":1.006166,"u":1.314524,"m":1.176723,"r":1.413948,"s":1.494046,"k":1.191034};
 function calculateResult(answers){
  if(answers.length!==8||answers.some(a=>!Number.isInteger(a)||a<0||a>2))throw new Error('8개의 답변이 필요합니다.');
  const ids=Object.keys(characters),scores=Object.fromEntries(ids.map(id=>[id,0])),primary={...scores};
  answers.forEach((a,i)=>{const[p,s]=questions[i].weights[a];scores[p]+=2;scores[s]++;primary[p]++;});
+ ids.forEach(id=>{scores[id]*=scoreScale[id];});
  let candidates=ids.filter(id=>scores[id]===Math.max(...Object.values(scores)));
  candidates=candidates.filter(id=>primary[id]===Math.max(...candidates.map(c=>primary[c])));
  for(const i of [6,5,4,1,0,2,3,7]){if(candidates.length===1)break;const[p,s]=questions[i].weights[answers[i]],value=id=>id===p?2:id===s?1:0;const max=Math.max(...candidates.map(value));candidates=candidates.filter(id=>value(id)===max);}

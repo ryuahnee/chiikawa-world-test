@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const data = vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../dist/data.js'), 'utf8') + ';({characters, questions, calculateResult})');
+const data = vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../dist/data.js'), 'utf8') + ';({characters, questions, calculateResult, scoreScale})');
 const ids = Object.keys(data.characters);
 assert.equal(data.questions.length, 8);
 assert.equal(ids.length, 7);
@@ -30,11 +30,13 @@ for (let n = 0; n < 3 ** 8; n++) {
   assert.deepEqual(answers, original);
   const score = Object.fromEntries(ids.map(id => [id, 0]));
   answers.forEach((a, i) => {const [p, s] = data.questions[i].weights[a]; score[p] += 2; score[s]++;});
+  for (const id of ids) score[id] *= data.scoreScale[id];
   assert.equal(score[result], Math.max(...Object.values(score)));
   counts[result]++;
 }
 assert(Object.values(counts).every(n => n > 0));
-assert.deepEqual(counts, {c:1318,h:1362,u:770,m:1196,r:689,s:275,k:951});
+assert.deepEqual(counts, {c:892,h:937,u:966,m:911,r:940,s:960,k:955});
+for (const count of Object.values(counts)) assert(Math.abs(count / 6561 - 1 / 7) < 0.01, "Each result should stay within one percentage point of equal share");
 assert.equal(data.calculateResult([0,2,2,1,0,0,2,0]), 's', 'Persistent learning answers should reach Shisa');
 for (const id of ids) assert(fs.existsSync(path.join(__dirname, '../dist/assets', id + '.png')), 'Missing character: ' + id);
 
