@@ -14,7 +14,10 @@
       "image": "https://mezamashi.ismcdn.jp/mwimgs/d/e/1200xm/img_de5df59a3624e7a1df64f86ffb25930d120010.jpg",
       "description": "User-approved official anime episode 220 still, used for a reserved interaction mood; not an actual first-meeting scene."
     },
-    "snack": "eat1.png",
+    "snack": {
+      "image": "https://pbs.twimg.com/media/EpLZbySUYAAdDKC?format=jpg&name=large",
+      "description": "User-provided crop of the upper chocolate-shop panel from the original comic. Character artwork preserved without redrawing."
+    },
     "comfort": {
       "description": "User-provided anime screenshot of Chiikawa and Hachiware holding exam results. Full scene preserved; optimized for web display."
     },
