@@ -26,6 +26,13 @@
    const response=await fetch(url,{cache:'no-store'});
    if(!response.ok)return;
    const release=await response.json();
+   if(release.version===current){
+    const canonical=new URL(location.href);
+    if(canonical.searchParams.has('v')||canonical.searchParams.has('_refresh')){
+     canonical.searchParams.delete('v');canonical.searchParams.delete('_refresh');
+     history.replaceState(null,'',canonical.href);
+    }
+   }
    if(typeof release.version==='string'&&/^[a-f0-9]{16}$/.test(release.version)&&release.version!==current){pending=release.version;refreshWhenReady();}
   }catch{}finally{checking=false;}
  }
