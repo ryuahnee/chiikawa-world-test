@@ -1,7 +1,11 @@
 {
   "description": "User-provided original character cutouts. Transparent padding trimmed; character pixels not redrawn.",
   "files": {
-    "map": "dance11.png",
+    "map": {
+      "description": "User-approved first-person map and distant dome-house village illustration with a circular worried Chiikawa reaction inset. Generated composite preview approved on 2026-10-28.",
+      "architecture_reference": "https://twitter.com/ngnchiikawa/status/1621450183103115264",
+      "expression_reference": "https://mezamashi.media/articles/-/1226"
+    },
     "work": {
       "source": "https://blog.iias.asia/pop-pacific/digital-ibuprofen-why-anxious-young-chinese-cant-get-enough-chiikawa",
       "description": "Original anime scene at the job noticeboard; approved candidate."
