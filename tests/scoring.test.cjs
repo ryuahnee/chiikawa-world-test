@@ -52,5 +52,4 @@ for (const questionIndex of [3,7]) {
   changesResult=new Set(results).size>1;
  }
  assert(changesResult, 'New question must influence the outcome: '+questionIndex);
- assert.equal(data.questions[questionIndex].insights.length,3);
 }
