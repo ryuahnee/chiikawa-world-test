@@ -1,8 +1,9 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.join(__dirname,'../dist');
-const token=process.env.POSTHOG_PROJECT_TOKEN||'',host=process.env.POSTHOG_API_HOST||'';
+const token=process.env.POSTHOG_PROJECT_TOKEN||'',host=process.env.POSTHOG_API_HOST||'',gaMeasurementId=process.env.GA_MEASUREMENT_ID||'';
 if(token && (!/^phc_[A-Za-z0-9_-]+$/.test(token)||!['https://us.i.posthog.com','https://eu.i.posthog.com'].includes(host)))throw Error('Invalid analytics configuration');
-fs.writeFileSync(path.join(root,'analytics-config.js'),'// Generated from release environment; public write-only token only.\nwindow.quizAnalyticsConfig = Object.freeze('+JSON.stringify({projectToken:token,host})+');\n');
+if(gaMeasurementId && !/^G-[A-Z0-9]+$/.test(gaMeasurementId))throw Error('Invalid GA measurement ID');
+fs.writeFileSync(path.join(root,'analytics-config.js'),'// Generated from release environment; public write-only token only.\nwindow.quizAnalyticsConfig = Object.freeze('+JSON.stringify({projectToken:token,host,gaMeasurementId})+');\n');
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const entry=path.join(root,'index.html');let html=fs.readFileSync(entry,'utf8');
 if(!html.includes('name="app-version"'))html=html.replace('<head>','<head><meta name="app-version" content="__RELEASE_VERSION__">');
