@@ -6,9 +6,24 @@
   // This ID lives only in memory. Reloading creates a new visit; no cookies or storage.
   const visitId = enabled ? crypto.randomUUID() : null;
   const release = document.querySelector('meta[name="app-version"]')?.content || 'unknown';
+  // Google Analytics uses its own cookies; Google signals and ad personalization stay off.
+  const gaId = /^G-[A-Z0-9]+$/.test(config.gaMeasurementId || '') ? config.gaMeasurementId : null;
+  if (gaId) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', gaId, {allow_google_signals: false, allow_ad_personalization_signals: false});
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+    document.head.appendChild(script);
+  }
   function capture(event, characterId) {
-    if (!enabled || !['site_visit', 'quiz_started', 'quiz_completed'].includes(event)) return;
+    if (!['site_visit', 'quiz_started', 'quiz_completed'].includes(event)) return;
     if (event === 'quiz_completed' && !/^[chumrsk]$/.test(characterId || '')) return;
+    // GA counts visits with its automatic page_view, so only quiz events are sent.
+    if (gaId && event !== 'site_visit') window.gtag('event', event, event === 'quiz_completed' ? {character_id: characterId} : {});
+    if (!enabled) return;
     const properties = {$process_person_profile: false, $geoip_disable: true, $ip: null, release};
     if (event === 'quiz_completed') properties.character_id = characterId;
     try {
@@ -19,6 +34,6 @@
       })).catch(() => {});
     } catch (_) { /* Analytics must never interrupt the quiz. */ }
   }
-  window.quizAnalytics = Object.freeze({enabled, capture});
+  window.quizAnalytics = Object.freeze({enabled, gaEnabled: Boolean(gaId), capture});
   capture('site_visit');
 })();

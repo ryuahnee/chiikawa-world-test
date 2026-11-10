@@ -19,6 +19,17 @@ for(const call of calls){
  assert.deepEqual(Object.keys(call.body.properties).sort(),(call.body.event==='quiz_completed'?['$process_person_profile','$geoip_disable','$ip','release','character_id']:['$process_person_profile','$geoip_disable','$ip','release']).sort());
 }
 assert.doesNotThrow(()=>boot(config,true));
+function bootGa(config){
+ const scripts=[],calls=[];const context={window:{quizAnalyticsConfig:config},crypto:{randomUUID:()=> 'temporary-visit'},document:{querySelector:()=>({content:'release'}),createElement:()=>({}),head:{appendChild:s=>scripts.push(s)}},fetch:(url,options)=>{calls.push(url);return Promise.resolve({});}};
+ vm.runInNewContext(source,context);return {scripts,calls,api:context.window.quizAnalytics,layer:()=>JSON.parse(JSON.stringify((context.window.dataLayer||[]).map(a=>[...a])))};
+}
+let ga=bootGa({gaMeasurementId:'G-INVALID!'});assert.equal(ga.scripts.length,0);assert.equal(ga.api.gaEnabled,false);
+ga=bootGa({gaMeasurementId:'G-TEST123'});
+assert.equal(ga.api.gaEnabled,true);assert.equal(ga.api.enabled,false);assert.equal(ga.calls.length,0);
+assert.equal(ga.scripts.length,1);assert.equal(ga.scripts[0].src,'https://www.googletagmanager.com/gtag/js?id=G-TEST123');assert.equal(ga.scripts[0].async,true);
+assert.deepEqual(ga.layer().find(a=>a[0]==='config'),['config','G-TEST123',{allow_google_signals:false,allow_ad_personalization_signals:false}]);
+ga.api.capture('quiz_started');ga.api.capture('quiz_completed','s');ga.api.capture('quiz_completed','invalid');ga.api.capture('anything');
+assert.deepEqual(ga.layer().filter(a=>a[0]==='event'),[['event','quiz_started',{}],['event','quiz_completed',{character_id:'s'}]]);
 const app=readFileSync('dist/app.js','utf8');
 assert.match(app,/calculateResult\(answers\);window\.quizAnalytics\?\.capture\('quiz_completed',result\)/);
 assert.equal((app.match(/capture\('quiz_completed'/g)||[]).length,1);

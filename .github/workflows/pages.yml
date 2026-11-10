@@ -27,6 +27,7 @@ jobs:
         env:
           POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
           POSTHOG_API_HOST: ${{ vars.POSTHOG_API_HOST }}
+          GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
         run: node scripts/prepare-release.cjs
       - name: Verify cache refresh
         run: node tests/cache.test.cjs
